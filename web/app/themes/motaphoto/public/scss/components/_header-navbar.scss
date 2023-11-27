@@ -1,0 +1,39 @@
+header {
+  padding: 40px 0;
+  max-height: 80px;
+
+  .container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .header__logo {
+  }
+
+  .header__navigation {
+    ul {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+
+      li {
+        margin-left: 2rem;
+
+        a {
+          color: $black;
+          font-weight: 600;
+          text-decoration: none;
+          text-transform: uppercase;
+          transition: color 0.2s ease-in-out;
+
+          &:visited {
+            color: $black;
+          }
+        }
+      }
+    }
+  }
+
+}
+

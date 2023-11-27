@@ -1,0 +1,287 @@
+@font-face {
+  font-family: "Poppins";
+  src: url("/public/fonts/Poppins-Light.ttf") format("truetype");
+  font-weight: 300;
+  font-style: normal;
+}
+@font-face {
+  font-family: "Space Mono";
+  src: url("/public/fonts/SpaceMono-Regular.ttf") format("truetype");
+  font-weight: 400;
+  font-style: normal;
+}
+@font-face {
+  font-family: "Space Mono";
+  src: url("/public/fonts/SpaceMono-Bold.ttf") format("truetype");
+  font-weight: 700;
+  font-style: normal;
+}
+@font-face {
+  font-family: "Space Mono";
+  src: url("/public/fonts/SpaceMono-Italic.ttf") format("truetype");
+  font-weight: 400;
+  font-style: italic;
+}
+@font-face {
+  font-family: "Space Mono";
+  src: url("/public/fonts/SpaceMono-BoldItalic.ttf") format("truetype");
+  font-weight: 700;
+  font-style: italic;
+}
+*, *:before, *:after {
+  box-sizing: border-box;
+  font-style: "space-mono", sans-serif;
+}
+
+html, body, div, span, object, iframe, figure, h1, h2, h3, h4, h5, h6, p, blockquote, pre, a, code, em, img, small, strike, strong, sub, sup, tt, b, u, i, ol, ul, li, fieldset, form, label, table, caption, tbody, tfoot, thead, tr, th, td, main, canvas, embed, footer, header, nav, section, video {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  font-size: 100%;
+  font: inherit;
+  vertical-align: baseline;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  text-size-adjust: none;
+}
+
+footer, header, nav, section, main {
+  display: block;
+}
+
+body {
+  line-height: 1.6;
+}
+
+ol, ul {
+  list-style: none;
+}
+
+blockquote, q {
+  quotes: none;
+}
+
+blockquote:before, blockquote:after, q:before, q:after {
+  content: "";
+  content: none;
+}
+
+table {
+  border-collapse: collapse;
+  border-spacing: 0;
+}
+
+input {
+  -webkit-appearance: none;
+  border-radius: 0;
+}
+
+.container {
+  width: 100%;
+  max-width: 1150px;
+  margin: 0 auto;
+  padding: 0 1rem;
+  overflow: hidden;
+}
+
+h1 {
+  font-family: "Space Mono", sans-serif;
+  font-size: 6rem;
+  font-style: italic;
+  font-weight: 700;
+  line-height: normal;
+  text-transform: uppercase;
+  color: #000000;
+}
+
+h2 {
+  font-family: "Space Mono", sans-serif;
+  font-size: 4.12rem;
+  font-style: italic;
+  font-weight: 400;
+  line-height: 58px;
+  text-transform: uppercase;
+  color: #000000;
+}
+
+h3 {
+  font-family: "Space Mono", sans-serif;
+  font-size: 1.12rem;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+  letter-spacing: 1.8px;
+  text-transform: uppercase;
+  color: #000000;
+}
+
+p {
+  font-family: Poppins, sans-serif;
+  font-size: 0.875rem;
+  font-style: normal;
+  font-weight: 300;
+  line-height: normal;
+  color: #000000;
+}
+
+p.description-photo {
+  font-family: "Space Mono", sans-serif;
+  font-size: 0.875rem;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+  letter-spacing: 1.4px;
+  text-transform: uppercase;
+  color: #000000;
+}
+
+header {
+  padding: 40px 0;
+  max-height: 80px;
+}
+header .container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+header .header__navigation ul {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+header .header__navigation ul li {
+  margin-left: 2rem;
+}
+header .header__navigation ul li a {
+  color: #000000;
+  font-weight: 600;
+  text-decoration: none;
+  text-transform: uppercase;
+  transition: color 0.2s ease-in-out;
+}
+header .header__navigation ul li a:visited {
+  color: #000000;
+}
+
+.btn {
+  border-radius: 5px;
+  font-weight: normal;
+  text-decoration: none;
+  transition: color 0.2s ease-in-out;
+  cursor: pointer;
+  text-align: center;
+  box-shadow: 0 2px 1px 0 rgba(0, 0, 0, 0.02);
+}
+
+.load-more-btn {
+  width: 100%;
+  height: 50px;
+  max-width: 272px;
+  padding: 8px 15px;
+  font-size: 0.75rem;
+  display: block;
+  margin: 40px auto;
+  border: 1px solid #D8D8D8;
+  background-color: #D8D8D8;
+  color: #000000;
+}
+.load-more-btn:hover {
+  color: #FFFFFF;
+  background-color: #000000;
+  font-weight: bold;
+}
+
+#footer {
+  height: 40px;
+  border-top: 1px solid #000000;
+}
+#footer ul {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  width: 100%;
+  max-width: 620px;
+  padding: 1px 0 8px 0;
+  margin: 0 auto;
+}
+#footer a {
+  color: #000000;
+  text-decoration: none;
+  transition: color 0.2s ease-in-out;
+}
+
+#hero {
+  width: 100%;
+  max-width: 1400px;
+  background: url("../images/nathalie-10.jpeg") no-repeat center;
+  background-size: cover;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: calc(100vh - 80px);
+  margin: 0 auto;
+}
+#hero h1 {
+  text-align: center;
+  color: transparent;
+  -webkit-text-stroke: 2px white;
+}
+
+.options {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 2rem;
+  margin-bottom: 1rem;
+}
+
+.two-columns-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-template-rows: 1fr;
+  gap: 20px;
+}
+.two-columns-grid img {
+  width: 100%;
+  height: 500px;
+  object-fit: cover;
+}
+
+#single {
+  display: flex;
+  flex-direction: column;
+  padding-top: 2.5rem;
+  padding-bottom: 4rem;
+  border-bottom: 1px solid #000;
+}
+
+.single__content {
+  display: flex;
+  flex-wrap: nowrap;
+  column-gap: 20px;
+  max-height: 70vh;
+}
+.single__content_infos {
+  flex: 1;
+  border-bottom: 1px solid #000;
+  display: flex;
+  align-items: flex-end;
+}
+.single__content_infos div {
+  max-width: 420px;
+  margin-bottom: 2rem;
+}
+.single__content_infos p {
+  margin-top: 1.25rem;
+}
+.single__content_img {
+  flex: 1;
+}
+.single__content_img img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/*# sourceMappingURL=main.css.map */

@@ -1,0 +1,30 @@
+// bouton generique et simple à personnaliser avec d'autre classes additionnelles
+.btn {
+  border-radius: 5px;
+  font-weight: normal;
+  text-decoration: none;
+  transition: color 0.2s ease-in-out;
+  cursor: pointer;
+  text-align: center;
+  box-shadow: 0 2px 1px 0 rgba(0, 0, 0, 0.02);
+}
+
+.load-more-btn {
+  width: 100%;
+  height: 50px;
+  max-width: 272px;
+  padding: 8px 15px;
+  font-size: 0.75rem;
+  display: block;
+  margin:  40px auto;
+  border: 1px solid $gray-medium;
+  background-color: $gray-medium;
+  color: $black;
+
+
+  &:hover {
+    color: $white;
+    background-color: $black;
+    font-weight: bold;
+  }
+}

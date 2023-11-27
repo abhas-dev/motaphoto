@@ -1,0 +1,39 @@
+#single {
+  display: flex;
+  flex-direction: column;
+  padding-top: 2.5rem;
+  padding-bottom: 4rem;
+  border-bottom : 1px solid #000;
+}
+
+.single__content {
+  display: flex;
+  flex-wrap: nowrap;
+  column-gap: 20px;
+  max-height: 70vh;
+
+  &_infos {
+    flex: 1;
+    border-bottom: 1px solid #000;
+    display: flex;
+    align-items: flex-end;
+
+    div {
+      max-width: 420px;
+      margin-bottom: 2rem;
+    }
+
+    p {
+      margin-top: 1.25rem;
+    }
+  }
+
+  &_img {
+    flex: 1;
+    img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+  }
+}
