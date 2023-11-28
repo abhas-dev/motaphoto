@@ -1,36 +1,36 @@
 @font-face {
   font-family: "Poppins";
-  src: url("/public/fonts/Poppins-Light.ttf") format("truetype");
+  src: url("../fonts/Poppins-Light.ttf") format("truetype");
   font-weight: 300;
   font-style: normal;
 }
 @font-face {
   font-family: "Space Mono";
-  src: url("/public/fonts/SpaceMono-Regular.ttf") format("truetype");
+  src: url("../fonts/SpaceMono-Regular.ttf") format("truetype");
   font-weight: 400;
   font-style: normal;
 }
 @font-face {
   font-family: "Space Mono";
-  src: url("/public/fonts/SpaceMono-Bold.ttf") format("truetype");
+  src: url("../fonts/SpaceMono-Bold.ttf") format("truetype");
   font-weight: 700;
   font-style: normal;
 }
 @font-face {
   font-family: "Space Mono";
-  src: url("/public/fonts/SpaceMono-Italic.ttf") format("truetype");
+  src: url("../fonts/SpaceMono-Italic.ttf") format("truetype");
   font-weight: 400;
   font-style: italic;
 }
 @font-face {
   font-family: "Space Mono";
-  src: url("/public/fonts/SpaceMono-BoldItalic.ttf") format("truetype");
+  src: url("../fonts/SpaceMono-BoldItalic.ttf") format("truetype");
   font-weight: 700;
   font-style: italic;
 }
 *, *:before, *:after {
   box-sizing: border-box;
-  font-style: "space-mono", sans-serif;
+  font-style: "Space Mono", sans-serif;
 }
 
 html, body, div, span, object, iframe, figure, h1, h2, h3, h4, h5, h6, p, blockquote, pre, a, code, em, img, small, strike, strong, sub, sup, tt, b, u, i, ol, ul, li, fieldset, form, label, table, caption, tbody, tfoot, thead, tr, th, td, main, canvas, embed, footer, header, nav, section, video {
@@ -153,10 +153,13 @@ header .header__navigation ul li {
   margin-left: 2rem;
 }
 header .header__navigation ul li a {
-  color: #000000;
-  font-weight: 600;
+  font-family: "Space Mono", sans-serif;
+  font-size: 1rem;
+  font-weight: 400;
   text-decoration: none;
   text-transform: uppercase;
+  color: #000000;
+  line-height: 1;
   transition: color 0.2s ease-in-out;
 }
 header .header__navigation ul li a:visited {
@@ -206,6 +209,11 @@ header .header__navigation ul li a:visited {
 }
 #footer a {
   color: #000000;
+  font-family: "Space Mono", sans-serif;
+  font-size: 1rem;
+  font-weight: 400;
+  line-height: normal;
+  text-transform: uppercase;
   text-decoration: none;
   transition: color 0.2s ease-in-out;
 }

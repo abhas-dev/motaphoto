@@ -21,10 +21,13 @@ header {
         margin-left: 2rem;
 
         a {
-          color: $black;
-          font-weight: 600;
+          font-family: $font-primary;
+          font-size: 1rem;
+          font-weight: 400;
           text-decoration: none;
           text-transform: uppercase;
+          color: $black;
+          line-height: 1;
           transition: color 0.2s ease-in-out;
 
           &:visited {
