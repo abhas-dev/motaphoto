@@ -40,7 +40,12 @@
     "roots/wordpress": "6.4.1",
     "roots/wp-config": "1.0.0",
     "roots/wp-password-bcrypt": "1.1.0",
-    "wpackagist-theme/twentytwentyfour": "^1.0"
+    "wpackagist-theme/twentytwentyfour": "^1.0",
+    "wpackagist-plugin/query-monitor": "^3.15",
+    "wpackagist-plugin/show-current-template": "^0.5.2",
+    "wpackagist-plugin/simply-show-hooks": "^1.2",
+    "wpackagist-plugin/theme-check": "20230417",
+    "wpackagist-plugin/theme-inspector": "^4.0"
   },
   "require-dev": {
     "squizlabs/php_codesniffer": "^3.7.1",
