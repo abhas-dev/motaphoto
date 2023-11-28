@@ -7,6 +7,10 @@ web/app/upgrade
 web/app/uploads/*
 !web/app/uploads/.gitkeep
 web/app/cache/*
+web/app/themes/motaphoto/node_modules/
+
+# Theme
+web/app/themes/motaphoto/public/images
 
 # WordPress
 web/wp
