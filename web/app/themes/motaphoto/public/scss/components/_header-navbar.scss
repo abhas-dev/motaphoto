@@ -28,7 +28,11 @@ header {
           text-transform: uppercase;
           color: $black;
           line-height: 1;
-          transition: color 0.2s ease-in-out;
+          transition: all 0.3s;
+
+          &:hover {
+            font-weight: 700;
+          }
 
           &:visited {
             color: $black;

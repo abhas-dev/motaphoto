@@ -1,6 +1,6 @@
 <?php get_header(); ?>
 
-	<section id="hero" class="hero">
+	<section id="hero" class="hero" style="background-image: url(<?= get_theme_file_uri('public/images/nathalie-10.jpeg') ?>)">
 		<h1>Photographe Event</h1>
 	</section>
 

@@ -4,9 +4,9 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "build": "wp-scripts build",
-    "start": "wp-scripts start",
-    "dev": "wp-scripts start",
+    "build": "wp-scripts build public/src/index.js --output-path=public/build",
+    "start": "wp-scripts start public/src/index.js --output-path=public/build",
+    "dev": "wp-scripts start ",
     "devFast": "wp-scripts start",
     "format": "wp-scripts format",
     "lint:css": "wp-scripts lint-style",

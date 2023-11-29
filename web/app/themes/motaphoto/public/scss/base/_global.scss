@@ -7,7 +7,7 @@
 }
 
 h1 {
-  font-family: "Space Mono", sans-serif;
+  font-family: $font-primary;
   font-size: 6rem;
   font-style: italic;
   font-weight: 700;
@@ -17,7 +17,7 @@ h1 {
 }
 
 h2 {
-  font-family: "Space Mono", sans-serif;
+  font-family: $font-primary;
   font-size: 4.12rem;
   font-style: italic;
   font-weight: 400;
@@ -27,7 +27,7 @@ h2 {
 }
 
 h3 {
-  font-family: "Space Mono", sans-serif;
+  font-family: $font-primary;
   font-size: 1.12rem;
   font-style: normal;
   font-weight: 400;
@@ -46,8 +46,8 @@ p {
   color: $black;
 }
 
-p.description-photo {
-  font-family: "Space Mono", sans-serif;
+.description-photo {
+  font-family: $font-primary;
   font-size: 0.875rem;
   font-style: normal;
   font-weight: 400;
@@ -55,4 +55,38 @@ p.description-photo {
   letter-spacing: 1.4px;
   text-transform: uppercase;
   color: $black;
+}
+
+img {
+  width: 100%;
+  object-fit: cover;
+}
+
+%btn-shared {
+  display: inline-block;
+  padding: 0.5rem 1rem;
+  transition: all 0.5s;
+  border: 2px solid $gray-medium;
+  border-radius: 2px;
+  box-shadow: 0 2px 1px 0 rgba(0, 0, 0, 0.02);
+  cursor: pointer;
+  font-family: $font-primary;
+  font-weight: 400;
+  font-style: normal;
+  line-height: normal;
+  font-size: 0.875rem;
+  letter-spacing: 1.4px;
+}
+
+.btn {
+  &-grey {
+    @extend %btn-shared;
+    color: $black;
+    background: $gray-medium;
+  }
+
+  &-grey:hover {
+    background: $black;
+    color: $white;
+  }
 }
