@@ -48,5 +48,6 @@ $ composer require wpackagist-plugin/query-monitor
 $ composer require roots/wordpress -W
 $ composer require wpackagist-plugin/query-monitor
 $ composer require roots/wordpress:6.4.1 -W
+$ composer update wpackagist-plugin/contact-form-7
 ```
 

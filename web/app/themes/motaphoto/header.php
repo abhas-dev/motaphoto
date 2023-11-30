@@ -12,16 +12,24 @@
 	<header>
 		<div class="container">
 			<div class="header__logo">
-				<a href="<?= site_url() ?>">
+                <?php $logoId = get_theme_mod('custom_logo'); ?>
+				<a href="<?= home_url() ?>">
 					<img src="<?php echo get_theme_file_uri('public/images/logo.png'); ?>" alt="logo">
+<!--					<img src="--><?php //= wp_get_attachment_image_src($logoId, 'medium')[0]; ?><!--" alt="logo">-->
 				</a>
 			</div>
 			<nav class="header__navigation">
-				<ul>
-					<li><a href="<?= site_url() ?>">accueil</a></li>
-					<li><a href="<?= site_url('/about-us') ?>">à propos</a></li>
-					<li class="contact-btn"><a href="#">contact</a></li>
-				</ul>
+                <?php
+                    wp_nav_menu([
+	                    'theme_location' => 'headerMenuLocation',
+                        'container' => 'ul',
+                    ]);
+                ?>
+<!--				<ul>-->
+<!--					<li><a href="--><?php //= site_url() ?><!--">accueil</a></li>-->
+<!--					<li><a href="--><?php //= site_url('/about-us') ?><!--">à propos</a></li>-->
+<!--					<li class="contact-btn"><a href="#">contact</a></li>-->
+<!--				</ul>-->
 			</nav>
 		</div>
 	</header>
