@@ -19,25 +19,17 @@
 					</select>
 
 					<select name="filters--tags" id="filters--tags">
-						<option value="all">Tous les tags</option>
+						<option value="all">Tous les Formats</option>
 						<option value="portrait">Portrait</option>
 						<option value="paysage">Paysage</option>
-						<option value="architecture">Architecture</option>
-						<option value="animaux">Animaux</option>
-						<option value="sport">Sport</option>
-						<option value="evenement">Evénement</option>
 					</select>
 				</div>
 
 				<div class="sort">
 					<select name="sort" id="sort">
 						<option value="all">Trier par</option>
-						<option value="portrait">Portrait</option>
-						<option value="paysage">Paysage</option>
-						<option value="architecture">Architecture</option>
-						<option value="animaux">Animaux</option>
-						<option value="sport">Sport</option>
-						<option value="evenement">Evénement</option>
+						<option value="portrait">De la plus ancienne à la plus récente</option>
+						<option value="portrait">De la plus récente à la plus ancienne</option>
 					</select>
 				</div>
 			</div>

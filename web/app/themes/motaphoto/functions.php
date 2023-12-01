@@ -38,7 +38,9 @@ function add_class_to_menu_link( $atts, $item, $args ) {
 add_action('after_setup_theme', 'register_menus');
 add_action('after_setup_theme', 'motaphoto_features');
 add_action('wp_enqueue_scripts', 'motaphoto_enqueue_styles');
-
+add_action('init', 'add_photo_categories');
+add_action('init', 'add_photo_formats');
+add_action('init', 'photo_post_types');
 
 // Add filters
 add_filter( 'nav_menu_link_attributes', 'add_class_to_menu_link', 10, 3 );
