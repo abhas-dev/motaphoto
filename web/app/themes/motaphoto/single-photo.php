@@ -39,7 +39,7 @@ if ($photo): ?>
             <div class="single__content_infos">
                 <div>
                     <h2><?php the_title(); ?></h2>
-                    <p class="description-photo">Référence : <?php the_field('photo_reference'); ?></p>
+                    <p class="description-photo referenceParagraph" data-photo-reference="<?php the_field('photo_reference'); ?>">Référence : <?php the_field('photo_reference'); ?></p>
                     <p class="description-photo">Catégorie : <?php echo $photoCategory; ?></p>
                     <p class="description-photo">Format : <?php  echo $photoFormat; ?></p>
                     <p class="description-photo">Type : <?php the_field('photo_type'); ?></p>
