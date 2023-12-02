@@ -29,7 +29,7 @@ function motaphoto_features():void  {
 function add_class_to_menu_link( $atts, $item, $args ) {
 //	if ( $item->url == home_url().'/contact' ) {
 	if ( $item->title == 'Contact' ) {
-		$atts['class'] = 'contact-btn';
+		$atts['class'] = 'contact';
 	}
 	return $atts;
 }

@@ -1,30 +1,44 @@
-// bouton generique et simple à personnaliser avec d'autre classes additionnelles
-.btn {
-  border-radius: 5px;
-  font-weight: normal;
-  text-decoration: none;
-  transition: color 0.2s ease-in-out;
-  cursor: pointer;
-  text-align: center;
+%btn-shared {
+  display: inline-block;
+  padding: 1rem 5rem;
+  transition: all 0.3s;
+  //transition: color 0.2s ease-in-out;
+  border: 2px solid $gray-medium;
+  border-radius: 2px;
   box-shadow: 0 2px 1px 0 rgba(0, 0, 0, 0.02);
+  cursor: pointer;
+  font-family: $font-primary;
+  font-size: 0.75rem;
+  font-weight: 400;
+  font-style: normal;
+  line-height: normal;
+  letter-spacing: 1.4px;
+  text-decoration: none;
+  text-align: center;
+  text-transform: capitalize;
 }
 
-.load-more-btn {
-  width: 100%;
-  height: 50px;
-  max-width: 272px;
-  padding: 8px 15px;
-  font-size: 0.75rem;
-  display: block;
-  margin:  40px auto;
-  border: 1px solid $gray-medium;
-  background-color: $gray-medium;
-  color: $black;
+.btn {
+  @extend %btn-shared;
 
+  &-grey {
+    color: $black;
+    background-color: $gray-medium;
+    border: 1px solid $gray-medium;
+  }
 
-  &:hover {
+  &-grey:hover {
     color: $white;
     background-color: $black;
     font-weight: bold;
+  }
+
+  &-contact {
+
+  }
+
+  &-load-more {
+    margin:  40px auto;
+    display: block;
   }
 }

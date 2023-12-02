@@ -34,22 +34,25 @@
 				</div>
 			</div>
 
-			<div class="two-columns-grid">
-				<img src="public/images/nathalie-0.jpeg" alt="">
-				<img src="public/images/nathalie-1.jpeg" alt="">
-				<img src="public/images/nathalie-2.jpeg" alt="">
-				<img src="public/images/nathalie-3.jpeg" alt="">
-				<img src="public/images/nathalie-4.jpeg" alt="">
-				<img src="public/images/nathalie-5.jpeg" alt="">
-				<img src="public/images/nathalie-6.jpeg" alt="">
-				<img src="public/images/nathalie-7.jpeg" alt="">
-				<img src="public/images/nathalie-8.jpeg" alt="">
-				<img src="public/images/nathalie-9.jpeg" alt="">
-				<img src="public/images/nathalie-10.jpeg" alt="">
-				<img src="public/images/nathalie-11.jpeg" alt="">
-			</div>
+            <div class="two-columns-grid">
+            <?php
+            $photos = new WP_Query([
+                'post_type' => 'photo',
+                'posts_per_page' => 12,
+                'orderby' => 'id',
+                'order' => 'DESC'
+            ]);
 
-			<button type="button" class="btn load-more-btn">Charger plus</button>
+            if ($photos->have_posts()){
+                while ($photos->have_posts()){
+                    $photos->the_post();
+                    $imageObject =  get_field('photo_image');
+                    echo "<a href=" . esc_url(get_permalink()) . "><img src=" . esc_url($imageObject['url']) ." alt=" . esc_attr($imageObject['alt']) . "></a>";
+                }
+            }
+            ?>
+            </div>
+            <button type="button" class="btn btn-grey btn-load-more">Charger plus</button>
 		</div>
 	</section>
 
