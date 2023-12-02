@@ -5,9 +5,10 @@
 @import 'base/mixins';
 @import 'base/global';
 
-@import "components/btn";
+@import 'components/btn';
 @import 'components/header-navbar';
-@import 'components/contact-modal';
+@import 'components/modal-contact';
+@import 'components/card-photo';
 @import 'components/footer';
 
 @import 'layouts/hero';

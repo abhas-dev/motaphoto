@@ -68,6 +68,17 @@ if ($photo): ?>
 
     <section id="related-content">
         <h3>Vous aimerez aussi</h3>
+        <?php
+        $photos = new WP_Query([
+            'post_type' => 'photo',
+            'posts_per_page' => 2,
+            'orderby' => 'id',
+            'order' => 'DESC'
+        ]);
+
+        get_template_part( 'template-parts/card-photo', null, ['photos' => $photos]);
+        ?>
+        <button type="button" class="btn btn-grey btn-load-more">Toutes les photos</button>
     </section>
 </div>
 <?php endif; ?>

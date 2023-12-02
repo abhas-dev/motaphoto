@@ -329,6 +329,62 @@ header .header__navigation ul li a:visited {
   margin-top: 1rem;
 }
 
+.card-photo {
+  position: relative;
+  height: 500px;
+}
+.card-photo img {
+  height: 100%;
+  width: 100%;
+  transition: 0.3s ease;
+}
+.card-photo .overlay-photo {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  transition: 0.3s ease;
+  z-index: 10;
+  opacity: 0;
+  display: flex;
+  align-items: flex-end;
+}
+.card-photo:hover .overlay-photo {
+  opacity: 1;
+}
+.card-photo__description {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  margin: 0 20px 20px 20px;
+}
+.card-photo__description svg.icon-eye {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  color: white;
+  width: 46px;
+  height: 31.204px;
+}
+.card-photo__description svg.icon-fullscreen {
+  position: absolute;
+  top: 3%;
+  right: 3%;
+  width: 34px;
+  height: 34px;
+}
+.card-photo__description p {
+  color: #FFFFFF;
+  font-family: "Poppins", sans-serif;
+  text-transform: uppercase;
+  font-weight: 500;
+}
+
 #footer {
   height: 40px;
   border-top: 1px solid #000000;
@@ -413,15 +469,11 @@ header .header__navigation ul li a:visited {
   grid-template-rows: 1fr;
   gap: 20px;
 }
-.two-columns-grid img {
-  height: 500px;
-}
 
 #single {
   display: flex;
   flex-direction: column;
   padding-top: 2.5rem;
-  margin-bottom: 4rem;
   border-bottom: 1px solid #000;
 }
 
@@ -471,6 +523,10 @@ header .header__navigation ul li a:visited {
   display: flex;
   justify-content: flex-end;
   flex-basis: 50%;
+}
+
+#related-content h3 {
+  margin: 4rem 0 2.5rem;
 }
 
 /*# sourceMappingURL=main.css.map */

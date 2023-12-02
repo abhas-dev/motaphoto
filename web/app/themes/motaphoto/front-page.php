@@ -33,8 +33,6 @@
 					</select>
 				</div>
 			</div>
-
-            <div class="two-columns-grid">
             <?php
             $photos = new WP_Query([
                 'post_type' => 'photo',
@@ -43,15 +41,8 @@
                 'order' => 'DESC'
             ]);
 
-            if ($photos->have_posts()){
-                while ($photos->have_posts()){
-                    $photos->the_post();
-                    $imageObject =  get_field('photo_image');
-                    echo "<a href=" . esc_url(get_permalink()) . "><img src=" . esc_url($imageObject['url']) ." alt=" . esc_attr($imageObject['alt']) . "></a>";
-                }
-            }
+            get_template_part( 'template-parts/card-photo', null, ['photos' => $photos]);
             ?>
-            </div>
             <button type="button" class="btn btn-grey btn-load-more">Charger plus</button>
 		</div>
 	</section>
