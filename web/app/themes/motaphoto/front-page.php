@@ -1,5 +1,17 @@
 <?php get_header(); ?>
 
+<?php
+// Recuperer les terms de la taxonomie photo_category et photo_format chacun dans un array different pour les afficher dans les filtres
+$photoCategories = get_terms([
+    'taxonomy' => 'photo_category',
+    'hide_empty' => false,
+]);
+
+$photoFormats = get_terms([
+    'taxonomy' => 'photo_format',
+    'hide_empty' => false,
+]);
+?>
 	<section id="hero" class="hero" style="background-image: url(<?= get_theme_file_uri('public/images/nathalie-10.jpeg') ?>)">
 		<h1>Photographe Event</h1>
 	</section>
@@ -9,19 +21,19 @@
 			<div class="options">
 				<div class="filters">
 					<select name="filters--categories" id="categories">
-						<option value="all">Categories</option>
-						<option value="portrait">Portrait</option>
-						<option value="paysage">Paysage</option>
-						<option value="architecture">Architecture</option>
-						<option value="animaux">Animaux</option>
-						<option value="sport">Sport</option>
-						<option value="evenement">Evénement</option>
+                        <option value="all">Toutes les Categories</option>
+                        <?php
+                        foreach ($photoCategories as $category) { ?>
+                            <option value="<?= $category->slug; ?>"><?= $category->name; ?></option>
+                        <?php } ?>
 					</select>
 
 					<select name="filters--tags" id="filters--tags">
-						<option value="all">Tous les Formats</option>
-						<option value="portrait">Portrait</option>
-						<option value="paysage">Paysage</option>
+                        <option value="all">Tous les Formats</option>
+                        <?php
+                        foreach ($photoFormats as $format) { ?>
+                            <option value="<?= $format->slug; ?>"><?= $format->name; ?></option>
+                        <?php } ?>
 					</select>
 				</div>
 
