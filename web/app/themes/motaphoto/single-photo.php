@@ -76,7 +76,7 @@ if ($photo): ?>
             'order' => 'DESC'
         ]);
 
-        get_template_part( 'template-parts/card-photo', null, ['photos' => $photos]);
+        get_template_part( 'template-parts/grid-photo-card', null, [ 'photos' => $photos]);
         ?>
         <button type="button" class="btn btn-grey btn-load-more">Toutes les photos</button>
     </section>

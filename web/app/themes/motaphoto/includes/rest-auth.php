@@ -18,6 +18,15 @@ add_filter('rest_authentication_errors', function ($result) {
 	return $result;
 }, 9);
 
+add_filter('rest_authentication_errors', function ($result) {
+	global $wp;
+	if (strpos($wp->query_vars['rest_route'], '/motaphoto/v1/photo') !== false) {
+		return true;
+	}
+
+	return $result;
+}, 9);
+
 add_filter( 'rest_authentication_errors', function( $result ) {
 	// If a previous authentication check was applied,
 	// pass that result along without modification.

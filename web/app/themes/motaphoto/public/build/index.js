@@ -1,33 +1,55 @@
 /******/ (() => { // webpackBootstrap
 /******/ 	var __webpack_modules__ = ({
 
-/***/ "./public/src/modules/contact-modal.js":
-/*!*********************************************!*\
-  !*** ./public/src/modules/contact-modal.js ***!
-  \*********************************************/
+/***/ "./public/src/modules/categoryPhotoFilter.js":
+/*!***************************************************!*\
+  !*** ./public/src/modules/categoryPhotoFilter.js ***!
+  \***************************************************/
 /***/ (() => {
 
-const contactModal = document.querySelector('.contact-modal');
-const contactBtn = document.querySelectorAll('.contact');
-let referenceParagraph = document.querySelector('.referenceParagraph');
-const photoReference = referenceParagraph.dataset.photoReference;
-const referenceField = document.querySelector('#ref-photo');
-contactBtn.forEach(btn => {
-  btn.addEventListener('click', e => {
-    e.preventDefault();
-    if (photoReference) {
-      referenceField.value = photoReference;
-    }
-    contactModal.showModal();
+const categoryPhotoFilter = document.querySelector('#categories');
+const gallery = document.querySelector('.photo-grid');
+const loadMoreBtn = document.querySelector('.btn-load-more');
+if (categoryPhotoFilter) {
+  categoryPhotoFilter.addEventListener('change', e => {
+    fetch(motaphotoData.root_url + '/wp-json/motaphoto/v1/photos?category=' + e.target.value).then(response => response.json()).then(data => {
+      loadMoreBtn.style.display = 'none';
+      console.log(data);
+      gallery.innerHTML = data.output;
+    }).catch(error => console.error('Erreur:', error));
   });
-});
+}
 
-// Close the modal when the user clicks anywhere outside of it
-window.addEventListener('click', e => {
-  if (e.target === contactModal) {
-    contactModal.close();
-  }
-});
+/***/ }),
+
+/***/ "./public/src/modules/loadMorePhotos.js":
+/*!**********************************************!*\
+  !*** ./public/src/modules/loadMorePhotos.js ***!
+  \**********************************************/
+/***/ (() => {
+
+const loadMoreBtn = document.querySelector('.btn-load-more');
+const gallery = document.querySelector('.photo-grid');
+let currentPage = 1;
+let loadedPhotos = 12;
+if (loadMoreBtn) {
+  loadMoreBtn.addEventListener('click', e => {
+    e.preventDefault();
+    // fetch(motaphotoData.root_url + '/wp-json/motaphoto/v1/photos?offset=' + loadedPhotos)
+    fetch(motaphotoData.root_url + '/wp-json/motaphoto/v1/photos/load-more').then(response => response.json()).then(data => {
+      if (data.length === 0) {
+        console.log(data);
+      } else {
+        console.log(data);
+        gallery.innerHTML += data.cards;
+        loadedPhotos += 12;
+        loadMoreBtn.style.display = 'none';
+      }
+    }).catch(error => {
+      console.error('Erreur lors du chargement des photos : ', error);
+    });
+  });
+}
 
 /***/ })
 
@@ -107,9 +129,13 @@ var __webpack_exports__ = {};
   !*** ./public/src/index.js ***!
   \*****************************/
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _modules_contact_modal__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./modules/contact-modal */ "./public/src/modules/contact-modal.js");
-/* harmony import */ var _modules_contact_modal__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_modules_contact_modal__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _modules_loadMorePhotos__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./modules/loadMorePhotos */ "./public/src/modules/loadMorePhotos.js");
+/* harmony import */ var _modules_loadMorePhotos__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_modules_loadMorePhotos__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _modules_categoryPhotoFilter__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./modules/categoryPhotoFilter */ "./public/src/modules/categoryPhotoFilter.js");
+/* harmony import */ var _modules_categoryPhotoFilter__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_modules_categoryPhotoFilter__WEBPACK_IMPORTED_MODULE_1__);
 
+
+// import ContactModal from "./modules/contactModal";
 })();
 
 /******/ })()

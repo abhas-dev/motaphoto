@@ -1,4 +1,13 @@
 <?php
+/**
+Plugin Name: Custom Post Type Photo
+Plugin URI: https://your-plugin-site.example.com
+Description: A custom mu-plugin for handling custom post type photo.
+Version: 0.1
+Author: abhas
+Author URI: azure-software.fr
+ */
+
 function add_photo_categories() {
 	register_taxonomy('photo_category', 'photo', [
 		'labels' => [
@@ -14,7 +23,8 @@ function add_photo_categories() {
 			'not_found_in_trash' => 'Aucune catégorie trouvée dans la corbeille',
 		],
 		'public' => true,
-		'show_in_rest' => false,
+		'show_in_rest' => true,
+		'rest_base' => 'category',
 		'hierarchical' => false,
 		'meta_box_cb' => false,
 		'show_admin_column' => true,
@@ -45,7 +55,8 @@ function add_photo_formats() {
 			'not_found_in_trash' => 'Aucun format trouvé dans la corbeille',
 		],
 		'public' => true,
-		'show_in_rest' => false,
+		'show_in_rest' => true,
+		'rest_base' => 'format',
 		'hierarchical' => false,
 		'meta_box_cb' => false,
 		'show_admin_column' => true,
@@ -58,7 +69,8 @@ function add_photo_formats() {
 function photo_post_types():void {
 	register_post_type('photo', [
 		'public' => true,
-		'show_in_rest' => false,
+		'show_in_rest' => true,
+		'rest_base' => 'photos',
 		'labels' => [
 			'name' => 'Photos',
 			'add_new_item' => 'Ajouter une photo',
