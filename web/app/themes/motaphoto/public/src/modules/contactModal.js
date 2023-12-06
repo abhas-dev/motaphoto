@@ -6,9 +6,7 @@ const referenceField = document.querySelector('#ref-photo');
 contactBtn.forEach((btn) => {
     btn.addEventListener('click', (e) => {
         e.preventDefault();
-        if (referenceParagraph && e.target.tagName === "BUTTON") {
-            referenceField.value = referenceParagraph.dataset.photoReference;
-        }
+        referenceField.value = (referenceParagraph && e.target.tagName === "BUTTON") ? referenceParagraph.dataset.photoReference : '';
         contactModal.showModal();
     });
 });

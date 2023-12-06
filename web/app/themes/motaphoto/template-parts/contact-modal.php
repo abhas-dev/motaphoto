@@ -6,25 +6,7 @@
         </div>
 
         <form action="#" method="dialog">
-            <div class="contact-form__fields">
-                <div class="group-input">
-                    <label for="name">Nom</label>
-                    <input type="text" name="name" id="name">
-                </div>
-                <div class="group-input">
-                    <label for="email">E-mail</label>
-                    <input type="email" name="email" id="email">
-                </div>
-                <div class="group-input">
-                    <label for="ref-photo">Réf.Photo</label>
-                    <input type="text" name="ref-photo" id="ref-photo">
-                </div>
-                <div class="group-input">
-                    <label for="message">message</label>
-                    <textarea name="message" id="message"></textarea>
-                </div>
-            </div>
-            <button type="submit" class="btn btn-grey">Envoyer</button>
+            <?= do_shortcode('[contact-form-7 id="7123e18" title="Modale de contact"]'); ?>
         </form>
     </div>
 </dialog>
