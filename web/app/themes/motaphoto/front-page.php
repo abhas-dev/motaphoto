@@ -27,11 +27,11 @@ $photoFormats = get_terms([
                         <?php } ?>
 					</select>
 
-					<select name="filters--tags" id="filters--tags">
+					<select name="filters--tags" id="format">
                         <option value="all">Tous les Formats</option>
                         <?php
                         foreach ($photoFormats as $format) { ?>
-                            <option value="<?= $format->term_taxonomy_id; ?>"><?= $format->name; ?></option>
+                            <option value="<?= $format->slug; ?>"><?= $format->name; ?></option>
                         <?php } ?>
 					</select>
 				</div>

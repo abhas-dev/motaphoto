@@ -13,8 +13,7 @@ const loadMoreBtn = document.querySelector('.btn-load-more');
 if (categoryPhotoFilter) {
   categoryPhotoFilter.addEventListener('change', e => {
     fetch(motaphotoData.root_url + '/wp-json/motaphoto/v1/photos?category=' + e.target.value).then(response => response.json()).then(data => {
-      loadMoreBtn.style.display = 'none';
-      console.log(data);
+      loadMoreBtn.style.display = !data.filter.length ? 'block' : 'none';
       gallery.innerHTML = data.output;
     }).catch(error => console.error('Erreur:', error));
   });
@@ -116,6 +115,26 @@ window.addEventListener('click', e => {
 //     new ContactModal();
 // });
 // export default ContactModal;
+
+/***/ }),
+
+/***/ "./public/src/modules/formatPhotoFilter.js":
+/*!*************************************************!*\
+  !*** ./public/src/modules/formatPhotoFilter.js ***!
+  \*************************************************/
+/***/ (() => {
+
+const formatPhotoFilter = document.querySelector('#format');
+const gallery = document.querySelector('.photo-grid');
+const loadMoreBtn = document.querySelector('.btn-load-more');
+if (formatPhotoFilter) {
+  formatPhotoFilter.addEventListener('change', e => {
+    fetch(motaphotoData.root_url + '/wp-json/motaphoto/v1/photos?format=' + e.target.value).then(response => response.json()).then(data => {
+      loadMoreBtn.style.display = !data.filter.length ? 'block' : 'none';
+      gallery.innerHTML = data.output;
+    }).catch(error => console.error('Erreur:', error));
+  });
+}
 
 /***/ }),
 
@@ -255,8 +274,11 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _modules_loadMorePhotos__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_modules_loadMorePhotos__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var _modules_categoryPhotoFilter__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./modules/categoryPhotoFilter */ "./public/src/modules/categoryPhotoFilter.js");
 /* harmony import */ var _modules_categoryPhotoFilter__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_modules_categoryPhotoFilter__WEBPACK_IMPORTED_MODULE_1__);
-/* harmony import */ var _modules_contactModal__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./modules/contactModal */ "./public/src/modules/contactModal.js");
-/* harmony import */ var _modules_contactModal__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(_modules_contactModal__WEBPACK_IMPORTED_MODULE_2__);
+/* harmony import */ var _modules_formatPhotoFilter__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./modules/formatPhotoFilter */ "./public/src/modules/formatPhotoFilter.js");
+/* harmony import */ var _modules_formatPhotoFilter__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(_modules_formatPhotoFilter__WEBPACK_IMPORTED_MODULE_2__);
+/* harmony import */ var _modules_contactModal__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./modules/contactModal */ "./public/src/modules/contactModal.js");
+/* harmony import */ var _modules_contactModal__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(_modules_contactModal__WEBPACK_IMPORTED_MODULE_3__);
+
 
 
 

@@ -388,6 +388,7 @@ header .header__navigation ul li a:visited {
 #footer {
   height: 40px;
   border-top: 1px solid #000000;
+  margin-top: 20px;
 }
 #footer ul {
   display: flex;
@@ -471,7 +472,7 @@ header .header__navigation ul li a:visited {
 }
 
 .no-content-message {
-  margin: 20px 0;
+  margin-top: 20px;
 }
 
 #single {

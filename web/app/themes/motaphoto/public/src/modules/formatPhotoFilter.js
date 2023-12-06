@@ -1,10 +1,10 @@
-const categoryPhotoFilter = document.querySelector('#categories');
+const formatPhotoFilter = document.querySelector('#format');
 const gallery = document.querySelector('.photo-grid');
 const loadMoreBtn = document.querySelector('.btn-load-more');
 
-if(categoryPhotoFilter) {
-    categoryPhotoFilter.addEventListener('change', (e) => {
-        fetch(motaphotoData.root_url + '/wp-json/motaphoto/v1/photos?category=' + e.target.value)
+if(formatPhotoFilter) {
+    formatPhotoFilter.addEventListener('change', (e) => {
+        fetch(motaphotoData.root_url + '/wp-json/motaphoto/v1/photos?format=' + e.target.value)
             .then(response => response.json())
             .then(data => {
                 loadMoreBtn.style.display = !data.filter.length ? 'block' : 'none';
@@ -13,3 +13,5 @@ if(categoryPhotoFilter) {
             .catch(error => console.error('Erreur:', error));
     });
 }
+
+

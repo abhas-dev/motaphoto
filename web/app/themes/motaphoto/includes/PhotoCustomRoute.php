@@ -68,13 +68,11 @@ class PhotoCustomRoute extends WP_REST_Controller {
 			return new WP_Error( 'no_photo', "Il n'y a pas de photos" . $exception, [ 'status' => 404 ] );
 		}
 
-		$htmlContent = '';
-
 		if($photos->have_posts()) {
 			ob_start();
 			while ( $photos->have_posts() ) {
 				$photos->the_post();
-				$htmlContent .= get_template_part('template-parts/photo-card', null, [
+				get_template_part('template-parts/photo-card', null, [
 					'imageUrl' => get_field('photo_image')['url'],
 					'imageAlt' => get_field('photo_image')['alt'],
 					'title' => get_the_title(),
@@ -85,6 +83,11 @@ class PhotoCustomRoute extends WP_REST_Controller {
 
 			$output = ob_get_contents();
 			ob_end_clean();
+
+			$response = [
+				'output' => $output,
+				'filter' => $taxQuery ?? ''
+			];
 		} else {
 			return new WP_REST_Response( [
 				'status' => 'no_photo',
@@ -94,7 +97,7 @@ class PhotoCustomRoute extends WP_REST_Controller {
 			);
 		}
 
-		return new WP_REST_Response( compact('output'), 200 );
+		return new WP_REST_Response( $response, 200 );
 	}
 
 	public function get_more_photos( WP_REST_Request $request ): WP_Error|WP_REST_Response|string {
