@@ -69,11 +69,18 @@ if ($photo): ?>
     <section id="related-content">
         <h3>Vous aimerez aussi</h3>
         <?php
+        $tax_query = [
+	        'taxonomy' => 'photo_category',
+	        'field'    => 'slug',
+	        'terms'    => $photoCategory
+        ];
+
         $photos = new WP_Query([
             'post_type' => 'photo',
+            'tax_query' => [$tax_query],
             'posts_per_page' => 2,
-            'orderby' => 'id',
-            'order' => 'DESC'
+            'orderby' => 'rand'
+
         ]);
 
         get_template_part( 'template-parts/grid-photo-card', null, [ 'photos' => $photos]);
