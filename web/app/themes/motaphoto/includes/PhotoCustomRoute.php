@@ -39,7 +39,7 @@ class PhotoCustomRoute extends WP_REST_Controller {
 	public function index( WP_REST_Request $request ): WP_Error|WP_REST_Response {
 		$taxQuery = [];
 
-		if ( $request['category'] && $request['category'] !== 'all' ) {
+		if ($request['category'] && $request['category'] !== 'all') {
 			$taxQuery[] = [
 				'taxonomy' => 'photo_category',
 				'field'    => 'slug',
@@ -47,7 +47,7 @@ class PhotoCustomRoute extends WP_REST_Controller {
 			];
 		}
 
-		if ( $request['format'] && $request['format'] !== 'all' ) {
+		if ($request['format'] && $request['format'] !== 'all') {
 			$taxQuery[] = [
 				'taxonomy' => 'photo_format',
 				'field'    => 'slug',
@@ -61,7 +61,7 @@ class PhotoCustomRoute extends WP_REST_Controller {
 				'tax_query' => $taxQuery,
 				'posts_per_page' => 12,
 				'orderby' => 'date',
-				'order' => 'DESC',
+				'order' => $request['sort'] ?? 'DESC',
 				'paged' => $request['page'] ?: 1
 			] );
 		} catch (Exception $exception) {

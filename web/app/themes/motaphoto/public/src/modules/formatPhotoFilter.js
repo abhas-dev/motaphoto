@@ -4,7 +4,7 @@ const loadMoreBtn = document.querySelector('.btn-load-more');
 
 if(formatPhotoFilter) {
     formatPhotoFilter.addEventListener('change', (e) => {
-        fetch(motaphotoData.root_url + '/wp-json/motaphoto/v1/photos?format=' + e.target.value)
+        fetch(`${motaphotoData.root_url}/wp-json/motaphoto/v1/photos?format=${e.target.value}`)
             .then(response => response.json())
             .then(data => {
                 loadMoreBtn.style.display = !data.filter.length ? 'block' : 'none';
