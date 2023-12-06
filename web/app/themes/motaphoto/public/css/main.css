@@ -470,6 +470,10 @@ header .header__navigation ul li a:visited {
   gap: 20px;
 }
 
+.no-content-message {
+  margin: 20px 0;
+}
+
 #single {
   display: flex;
   flex-direction: column;

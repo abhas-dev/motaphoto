@@ -22,6 +22,103 @@ if (categoryPhotoFilter) {
 
 /***/ }),
 
+/***/ "./public/src/modules/contactModal.js":
+/*!********************************************!*\
+  !*** ./public/src/modules/contactModal.js ***!
+  \********************************************/
+/***/ (() => {
+
+const contactModal = document.querySelector('.contact-modal');
+const contactBtn = document.querySelectorAll('.contact');
+let referenceParagraph = document.querySelector('.referenceParagraph');
+const referenceField = document.querySelector('#ref-photo');
+contactBtn.forEach(btn => {
+  btn.addEventListener('click', e => {
+    e.preventDefault();
+    if (referenceParagraph && e.target.tagName === "BUTTON") {
+      referenceField.value = referenceParagraph.dataset.photoReference;
+    }
+    contactModal.showModal();
+  });
+});
+
+// Close the modal when the user clicks anywhere outside of it
+window.addEventListener('click', e => {
+  if (e.target === contactModal) {
+    contactModal.close();
+  }
+});
+
+// class ContactModal {
+//     constructor() {
+//         this.addModalHtml();
+//         this.contactModal = document.querySelector('.contact-modal');
+//         this.contactBtn = document.querySelectorAll('.contact');
+//         this.referenceParagraph = document.querySelector('.referenceParagraph');
+//         this.referenceField = document.querySelector('#ref-photo');
+//         this.eventListeners();
+//     }
+//
+//     eventListeners() {
+//         for (let btn of this.contactBtn) {
+//             btn.addEventListener('click', (e) => {
+//             e.preventDefault();
+//             if (this.referenceParagraph) {
+//                 this.referenceField.value = this.referenceParagraph.dataset.photoReference;
+//             }
+//             this.contactModal.showModal();
+//             });
+//         }
+//         // Close the modal when the user clicks anywhere outside of it
+//         window.addEventListener('click', (e) => {
+//             if (e.target === this.contactModal) {
+//                 this.contactModal.close();
+//             }
+//         });
+//     }
+//
+//     addModalHtml() {
+//         document.body.innerHTML += `
+//        <dialog class="contact-modal" id="contact-modal">
+//            <div class="modal-container">
+//                <div class="contact-modal__title">
+//                   <h2>contact</h2>
+//                   <h2>contact</h2>
+//                </div>
+//
+//                <form action="#" method="dialog">
+//                   <div class="contact-form__fields">
+//                       <div class="group-input">
+//                           <label for="name">Nom</label>
+//                           <input type="text" name="name" id="name">
+//                       </div>
+//                       <div class="group-input">
+//                           <label for="email">E-mail</label>
+//                           <input type="email" name="email" id="email">
+//                       </div>
+//                       <div class="group-input">
+//                           <label for="ref-photo">Réf.Photo</label>
+//                           <input type="text" name="ref-photo" id="ref-photo">
+//                       </div>
+//                       <div class="group-input">
+//                           <label for="message">message</label>
+//                           <textarea name="message" id="message"></textarea>
+//                       </div>
+//                   </div>
+//                   <button type="submit" class="btn btn-grey">Envoyer</button>
+//                </form>
+//            </div>
+//        </dialog>
+//        `;
+//     }
+// }
+// document.addEventListener('DOMContentLoaded', () => {
+//     new ContactModal();
+// });
+// export default ContactModal;
+
+/***/ }),
+
 /***/ "./public/src/modules/loadMorePhotos.js":
 /*!**********************************************!*\
   !*** ./public/src/modules/loadMorePhotos.js ***!
@@ -35,21 +132,46 @@ let loadedPhotos = 12;
 if (loadMoreBtn) {
   loadMoreBtn.addEventListener('click', e => {
     e.preventDefault();
-    // fetch(motaphotoData.root_url + '/wp-json/motaphoto/v1/photos?offset=' + loadedPhotos)
-    fetch(motaphotoData.root_url + '/wp-json/motaphoto/v1/photos/load-more').then(response => response.json()).then(data => {
-      if (data.length === 0) {
-        console.log(data);
-      } else {
-        console.log(data);
-        gallery.innerHTML += data.cards;
-        loadedPhotos += 12;
-        loadMoreBtn.style.display = 'none';
-      }
-    }).catch(error => {
-      console.error('Erreur lors du chargement des photos : ', error);
-    });
+    try {
+      fetch(`${motaphotoData.root_url}/wp-json/motaphoto/v1/photos/load-more?offset=${loadedPhotos}`).then(response => {
+        if (!response.ok) {
+          throw new Error('Erreur lors du chargement des photos');
+        }
+        return response.json();
+      }).then(data => {
+        if (!data || data.html.length === 0) {
+          console.log('Aucun contenu disponible.');
+          // loadMoreBtn.style.display = 'none';
+          const noMoreContentMessage = document.createElement('p');
+          noMoreContentMessage.classList.add('no-content-message');
+          noMoreContentMessage.textContent = "Il n'y a plus de contenu à afficher.";
+          loadMoreBtn.replaceWith(noMoreContentMessage);
+        } else {
+          gallery.innerHTML += data.html;
+          loadedPhotos += 12;
+        }
+      }).catch(error => {
+        console.error(error);
+      });
+    } catch (error) {
+      console.error('erreur dans le try catch: ', error);
+    }
   });
 }
+
+// .then(data => {
+//     console.log(data);
+//     if (data.length === 0) {
+//         loadMoreBtn.style.display = 'none';
+//         console.log('plus de contenu');
+//         // A
+//     } else {
+//         gallery.innerHTML += data.html;
+//
+//         loadedPhotos += 12;
+//         // loadMoreBtn.style.display = 'none';
+//     }
+// })
 
 /***/ })
 
@@ -133,6 +255,9 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _modules_loadMorePhotos__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_modules_loadMorePhotos__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var _modules_categoryPhotoFilter__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./modules/categoryPhotoFilter */ "./public/src/modules/categoryPhotoFilter.js");
 /* harmony import */ var _modules_categoryPhotoFilter__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_modules_categoryPhotoFilter__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var _modules_contactModal__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./modules/contactModal */ "./public/src/modules/contactModal.js");
+/* harmony import */ var _modules_contactModal__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(_modules_contactModal__WEBPACK_IMPORTED_MODULE_2__);
+
 
 
 // import ContactModal from "./modules/contactModal";

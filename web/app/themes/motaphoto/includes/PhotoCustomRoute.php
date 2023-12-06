@@ -19,37 +19,22 @@ class PhotoCustomRoute extends WP_REST_Controller {
 		register_rest_route( $this->namespace, '/' . $this->base, [
 			'methods'  => WP_REST_Server::READABLE,
 			'callback' => [ $this, 'index' ],
-			'args' => [
+			'args'     => [
 				'category' => [
-					'required' => false,
-					'validate_callback' => function($param, $request, $key) {
-						return is_string($param);
+					'required'          => false,
+					'validate_callback' => function ( $param, $request, $key ) {
+						return is_string( $param );
 					}
 				],
-				'format' => [
-					'required' => false,
-					'validate_callback' => function($param, $request, $key) {
-						return is_string($param);
+				'format'   => [
+					'required'          => false,
+					'validate_callback' => function ( $param, $request, $key ) {
+						return is_string( $param );
 					}
 				],
 			]
 		] );
-
-//		// Filtered photos route
-//		register_rest_route( $this->namespace, '/' . $this->base . '/(?P<category>[a-zA-Z0-9-]+)/(?P<format>[a-zA-Z0-9-]+)', [
-//			'methods'  => WP_REST_Server::READABLE,
-//			'callback' => [ $this, 'get_filtered_photos' ],
-//		] );
-
-//		register_rest_route( $this->namespace, '/' . $this->base, [
-//			'methods'  => WP_REST_Server::READABLE,
-//			'callback' => [ $this, 'get_photos' ],
-//		] );
 	}
-
-//	public function get_photos( WP_REST_Request $request ): WP_Error|WP_REST_Response {
-//
-//	}
 
 	public function index( WP_REST_Request $request ): WP_Error|WP_REST_Response {
 		$taxQuery = [];
@@ -70,16 +55,20 @@ class PhotoCustomRoute extends WP_REST_Controller {
 			];
 		}
 
-		$photos = new WP_Query( [
-			'post_type' => 'photo',
-			'tax_query' => $taxQuery,
-			'posts_per_page' => 12,
-			'orderby' => 'date',
-			'order' => 'DESC',
-			'paged' => $request['page'] ?: 1
-		] );
+		try {
+			$photos = new WP_Query( [
+				'post_type' => 'photo',
+				'tax_query' => $taxQuery,
+				'posts_per_page' => 12,
+				'orderby' => 'date',
+				'order' => 'DESC',
+				'paged' => $request['page'] ?: 1
+			] );
+		} catch (Exception $exception) {
+			return new WP_Error( 'no_photo', "Il n'y a pas de photos" . $exception, [ 'status' => 404 ] );
+		}
 
-		$photosData = [];
+		$htmlContent = '';
 
 		if($photos->have_posts()) {
 			ob_start();
@@ -97,23 +86,29 @@ class PhotoCustomRoute extends WP_REST_Controller {
 			$output = ob_get_contents();
 			ob_end_clean();
 		} else {
-			return new WP_Error( 'no_photo', "Il n'y a pas de photos", [ 'status' => 404 ] );
+			return new WP_REST_Response( [
+				'status' => 'no_photo',
+				'message' => "Il n'y a plus de photo"
+			],
+			204
+			);
 		}
 
 		return new WP_REST_Response( compact('output'), 200 );
 	}
 
-	public function get_more_photos( WP_REST_Request $request ): WP_Error|WP_REST_Response {
+	public function get_more_photos( WP_REST_Request $request ): WP_Error|WP_REST_Response|string {
 
 		$photos = new WP_Query([
 			'post_type' => 'photo',
 			'posts_per_page' => 12,
-			'offset' => ($request['page'] - 1) * 12,
+//			'page' => ($request['page'] - 1) * 12,
+			'offset' => $request['offset'],
 			'orderby' => 'date',
 			'order' => 'DESC'
 		]);
 
-		$photoCards = [];
+		$htmlContent = '';
 		$response = '';
 		$currentPage = $request['page'] ?: 1;
 
@@ -122,7 +117,8 @@ class PhotoCustomRoute extends WP_REST_Controller {
 			while ($photos->have_posts()) {
 				$photos->the_post();
 				$htmlContent .= get_template_part('template-parts/photo-card', null, [
-					'imageObject' => get_field('photo_image'),
+					'imageUrl' => get_field('photo_image')['url'],
+					'imageAlt' => get_field('photo_image')['alt'],
 					'title' => get_the_title(),
 					'category' => get_the_terms(get_post(), 'photo_category')[0]->name,
 					'format' => get_the_terms(get_post(), 'photo_format')[0]->name,
@@ -131,18 +127,38 @@ class PhotoCustomRoute extends WP_REST_Controller {
 
 			$output = ob_get_contents();
 			ob_end_clean();
+
+			$response = [
+				'html' => $output,
+				'currentPage' => $currentPage,
+				'maxPages' => $photos->max_num_pages,
+				'offset' => $request['offset']
+			];
 		} else {
-			return new WP_Error( 'no_photo', "Il n'y a pas de photos", [ 'status' => 404 ] );
+			$response = [
+				'html' => '',
+				'message' => "Il n'y a plus de photo"
+			];
 		}
 
-		$response = [
-			'html' => $output,
-			'currentPage' => $currentPage,
-			'maxPages' => $photos->max_num_pages,
-		];
-
 		return new WP_REST_Response( $response, 200 );
-
 	}
 
 }
+
+
+
+//		// Filtered photos route
+//		register_rest_route( $this->namespace, '/' . $this->base . '/(?P<category>[a-zA-Z0-9-]+)/(?P<format>[a-zA-Z0-9-]+)', [
+//			'methods'  => WP_REST_Server::READABLE,
+//			'callback' => [ $this, 'get_filtered_photos' ],
+//		] );
+
+//		register_rest_route( $this->namespace, '/' . $this->base, [
+//			'methods'  => WP_REST_Server::READABLE,
+//			'callback' => [ $this, 'get_photos' ],
+//		] );
+
+//	public function get_photos( WP_REST_Request $request ): WP_Error|WP_REST_Response {
+//
+//	}
