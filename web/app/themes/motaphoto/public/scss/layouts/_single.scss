@@ -41,7 +41,7 @@
   display: flex;
   width: 100%;
   column-gap: 20px;
-  padding: 1.6rem 0;
+  padding: 1rem 0;
 }
 
 .single__interaction_contact {
@@ -55,10 +55,39 @@
   display: flex;
   justify-content: flex-end;
   flex-basis: 50%;
+
+  .wrapper {
+    width: 80px;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .navigation-thumbnail {
+    height: 70px;
+
+    img {
+      height: 100%;
+    }
+  }
+
+  .navigation-arrows {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    padding-top: 10px;
+    //height: 100%;
+
+    svg {
+      cursor: pointer;
+    }
+  }
 }
+
+
 
 #related-content {
   h3 {
     margin: 4rem 0 2.5rem;
   }
 }
+

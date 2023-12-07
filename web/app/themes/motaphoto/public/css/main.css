@@ -514,7 +514,7 @@ header .header__navigation ul li a:visited {
   display: flex;
   width: 100%;
   column-gap: 20px;
-  padding: 1.6rem 0;
+  padding: 1rem 0;
 }
 
 .single__interaction_contact {
@@ -528,6 +528,26 @@ header .header__navigation ul li a:visited {
   display: flex;
   justify-content: flex-end;
   flex-basis: 50%;
+}
+.single__interaction_navigate .wrapper {
+  width: 80px;
+  display: flex;
+  flex-direction: column;
+}
+.single__interaction_navigate .navigation-thumbnail {
+  height: 70px;
+}
+.single__interaction_navigate .navigation-thumbnail img {
+  height: 100%;
+}
+.single__interaction_navigate .navigation-arrows {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  padding-top: 10px;
+}
+.single__interaction_navigate .navigation-arrows svg {
+  cursor: pointer;
 }
 
 #related-content h3 {

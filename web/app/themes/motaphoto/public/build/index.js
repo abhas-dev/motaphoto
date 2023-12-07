@@ -192,6 +192,33 @@ if (loadMoreBtn) {
 
 /***/ }),
 
+/***/ "./public/src/modules/photoNavigation.js":
+/*!***********************************************!*\
+  !*** ./public/src/modules/photoNavigation.js ***!
+  \***********************************************/
+/***/ (() => {
+
+const arrows = document.querySelectorAll('.arrow');
+const thumbnailDiv = document.querySelector('.navigation-thumbnail');
+const interactionSection = document.querySelector('.single__interaction');
+if (interactionSection) {
+  const previousThumbnailUrl = interactionSection.dataset.previousThumbnailUrl;
+  const nextThumbnailUrl = interactionSection.dataset.nextThumbnailUrl;
+  const thumbnail = document.createElement('img');
+  thumbnail.style.display = 'none';
+  thumbnailDiv.appendChild(thumbnail);
+  arrows.forEach(arrow => arrow.addEventListener('mouseover', e => {
+    thumbnail.style.display = 'block';
+    if (e.target.classList.contains('navigation-arrows__left')) {
+      thumbnail.src = previousThumbnailUrl;
+    } else if (e.target.classList.contains('navigation-arrows__right')) {
+      thumbnail.src = nextThumbnailUrl;
+    }
+  }));
+}
+
+/***/ }),
+
 /***/ "./public/src/modules/sortPhotos.js":
 /*!******************************************!*\
   !*** ./public/src/modules/sortPhotos.js ***!
@@ -297,6 +324,9 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _modules_sortPhotos__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(_modules_sortPhotos__WEBPACK_IMPORTED_MODULE_3__);
 /* harmony import */ var _modules_contactModal__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./modules/contactModal */ "./public/src/modules/contactModal.js");
 /* harmony import */ var _modules_contactModal__WEBPACK_IMPORTED_MODULE_4___default = /*#__PURE__*/__webpack_require__.n(_modules_contactModal__WEBPACK_IMPORTED_MODULE_4__);
+/* harmony import */ var _modules_photoNavigation__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./modules/photoNavigation */ "./public/src/modules/photoNavigation.js");
+/* harmony import */ var _modules_photoNavigation__WEBPACK_IMPORTED_MODULE_5___default = /*#__PURE__*/__webpack_require__.n(_modules_photoNavigation__WEBPACK_IMPORTED_MODULE_5__);
+
 
 
 
