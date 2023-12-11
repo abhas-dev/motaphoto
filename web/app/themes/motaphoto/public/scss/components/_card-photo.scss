@@ -34,22 +34,29 @@
     width: 100%;
     margin: 0 20px 20px 20px;
 
-    svg.icon-eye{
+    a.icon-eye {
       position: absolute;
       top: 50%;
       left: 50%;
       transform: translate(-50%, -50%);
-      color: white;
-      width: 46px;
-      height: 31.204px;
+
+      svg{
+        color: white;
+        width: 46px;
+        height: 31.204px;
+      }
     }
 
-    svg.icon-fullscreen {
+
+    a.icon-fullscreen {
       position: absolute;
       top: 3%;
       right: 3%;
       width: 34px;
       height: 34px;
+      svg {
+
+      }
     }
 
     p {

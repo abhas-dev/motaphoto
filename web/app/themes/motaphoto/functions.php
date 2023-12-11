@@ -4,6 +4,7 @@ require_once get_theme_file_path('/includes/rest-auth.php');
 //require get_theme_file_path('/includes/photo-route.php');
 require_once get_theme_file_path('/includes/PhotoCustomRoute.php');
 $photoCustomRoute = new PhotoCustomRoute();
+require_once get_theme_file_path('/includes/adjacentPostMod.php');
 
 if ( ! defined( '_S_VERSION' ) ) {
 	// Replace the version number of the theme on each release.

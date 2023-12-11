@@ -136,6 +136,142 @@ if (formatPhotoFilter) {
 
 /***/ }),
 
+/***/ "./public/src/modules/lightbox.js":
+/*!****************************************!*\
+  !*** ./public/src/modules/lightbox.js ***!
+  \****************************************/
+/***/ (() => {
+
+const lightbox = document.querySelector('#lightbox');
+const lightboxImg = document.querySelector('#lightbox>img');
+const fullScreenBtn = document.querySelectorAll('.icon-fullscreen');
+const closeBtn = document.querySelector('.lightbox__close');
+const lightboxPrevBtn = document.querySelector('.lightbox__previous');
+const lightboxNextBtn = document.querySelector('.lightbox__next');
+function photoNavigation(currentPhoto) {
+  const data = {};
+  if (!currentPhoto) {
+    return false;
+  } else {
+    data.current = {
+      title: currentPhoto.querySelector('.card-title').innerText,
+      imageUrl: currentPhoto.querySelector('img').src,
+      category: currentPhoto.querySelector('.card-photo-category').innerText
+    };
+  }
+  const previousPhoto = currentPhoto.previousElementSibling;
+  const nextPhoto = currentPhoto.nextElementSibling;
+  if (previousPhoto) {
+    data.prev = {
+      title: previousPhoto.querySelector('.card-title').innerText,
+      imageUrl: previousPhoto.querySelector('img').src,
+      category: previousPhoto.querySelector('.card-photo-category').innerText
+    };
+  }
+  if (nextPhoto) {
+    data.next = {
+      title: nextPhoto.querySelector('.card-title').innerText,
+      imageUrl: nextPhoto.querySelector('img').src,
+      category: nextPhoto.querySelector('.card-photo-category').innerText
+    };
+  }
+  return data;
+}
+if (fullScreenBtn.length) {
+  fullScreenBtn.forEach(link => {
+    link.addEventListener('click', e => {
+      e.preventDefault();
+      const currentCard = e.target.closest('.card-photo');
+      const photoData = photoNavigation(currentCard);
+      if (photoData && photoData.current) {
+        lightboxImg.src = photoData.current.imageUrl;
+        lightboxImg.alt = photoData.current.title;
+      }
+      lightbox.classList.toggle('active');
+    });
+  });
+}
+if (closeBtn) {
+  closeBtn.addEventListener('click', e => {
+    lightbox.classList.toggle('active');
+  });
+}
+if (lightboxPrevBtn) {
+  lightboxPrevBtn.addEventListener('click', e => {
+    lightboxImg.src = photoData.prev.imageUrl;
+    lightboxImg.alt = photoData.prev.title;
+    photoNavigation(photoData.prev);
+  });
+}
+if (lightboxNextBtn) {
+  lightboxNextBtn.addEventListener('click', e => {
+    lightboxImg.src = photoData.next.imageUrl;
+    lightboxImg.alt = photoData.next.title;
+    photoNavigation(photoData.next);
+  });
+}
+
+// /**
+//  * @property {HTMLElement} lightbox
+//  * @property {HTMLElement} fullScreenBtn
+//  * @property {HTMLElement} closeBtn
+//  * @property {HTMLElement} lightboxPrevBtn
+//  * @property {HTMLElement} lightboxNextBtn
+//  */
+// class Lightbox {
+//     static init () {
+//         const links = document.querySelectorAll('a[href$=".png"], a[href$=".jpg"], a[href$=".jpeg"]')
+//             .forEach(link => link.addEventListener('click', e => {
+//                 e.preventDefault();
+//                 new Lightbox(e.currentTarget.getAttribute('href'));
+//             }))
+//     }
+//
+//     /**
+//      * @param {string} url URL de l'image
+//      */
+//     constructor(url) {
+//         this.lightbox = document.querySelector('#lightbox');
+//         this.lightboxImg = document.querySelector('#lightbox>img');
+//         this.fullScreenBtn = document.querySelectorAll('.icon-fullscreen');
+//         this.closeBtn = document.querySelector('.lightbox__close');
+//         this.lightboxPrevBtn = document.querySelector('.lightbox__previous');
+//         this.lightboxNextBtn = document.querySelector('.lightbox__next');
+//     }
+//
+//     buildDOM (url) {
+//         const dom = document.createElement('div');
+//         dom.classList.add('lightbox');
+//     }
+//
+//     loadImage (url) {
+//         const image = new Image();
+//         image.onload = function () {
+//
+//         }
+//         image.src = url;
+//     }
+//
+//     openLightbox() {
+//             this.fullScreenBtn.forEach(link => {
+//         link.addEventListener('click',(e) => {
+//             e.preventDefault();
+//             console.log(e.target.closest('.card-photo__description').querySelector('.card-title'));
+//             this.lightbox.classList.toggle('active');
+//         })
+//     })
+//     }
+//
+//
+//
+//
+//
+// }
+//
+// Lightbox.init();
+
+/***/ }),
+
 /***/ "./public/src/modules/loadMorePhotos.js":
 /*!**********************************************!*\
   !*** ./public/src/modules/loadMorePhotos.js ***!
@@ -198,23 +334,30 @@ if (loadMoreBtn) {
   \***********************************************/
 /***/ (() => {
 
-const arrows = document.querySelectorAll('.arrow');
 const thumbnailDiv = document.querySelector('.navigation-thumbnail');
 const interactionSection = document.querySelector('.single__interaction');
+const leftArrow = document.querySelector('.navigation-arrows__left');
+const rightArrow = document.querySelector('.navigation-arrows__right');
 if (interactionSection) {
   const previousThumbnailUrl = interactionSection.dataset.previousThumbnailUrl;
   const nextThumbnailUrl = interactionSection.dataset.nextThumbnailUrl;
   const thumbnail = document.createElement('img');
   thumbnail.style.display = 'none';
   thumbnailDiv.appendChild(thumbnail);
-  arrows.forEach(arrow => arrow.addEventListener('mouseover', e => {
-    thumbnail.style.display = 'block';
-    if (e.target.classList.contains('navigation-arrows__left')) {
+  leftArrow.style.display = previousThumbnailUrl === '' ? 'none' : 'block';
+  rightArrow.style.display = nextThumbnailUrl === '' ? 'none' : 'block';
+  leftArrow.addEventListener('mouseover', () => {
+    if (previousThumbnailUrl !== '') {
+      thumbnail.style.display = 'block';
       thumbnail.src = previousThumbnailUrl;
-    } else if (e.target.classList.contains('navigation-arrows__right')) {
+    }
+  });
+  rightArrow.addEventListener('mouseover', () => {
+    if (nextThumbnailUrl !== '') {
+      thumbnail.style.display = 'block';
       thumbnail.src = nextThumbnailUrl;
     }
-  }));
+  });
 }
 
 /***/ }),
@@ -314,18 +457,21 @@ var __webpack_exports__ = {};
   !*** ./public/src/index.js ***!
   \*****************************/
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _modules_loadMorePhotos__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./modules/loadMorePhotos */ "./public/src/modules/loadMorePhotos.js");
-/* harmony import */ var _modules_loadMorePhotos__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_modules_loadMorePhotos__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var _modules_categoryPhotoFilter__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./modules/categoryPhotoFilter */ "./public/src/modules/categoryPhotoFilter.js");
-/* harmony import */ var _modules_categoryPhotoFilter__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_modules_categoryPhotoFilter__WEBPACK_IMPORTED_MODULE_1__);
-/* harmony import */ var _modules_formatPhotoFilter__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./modules/formatPhotoFilter */ "./public/src/modules/formatPhotoFilter.js");
-/* harmony import */ var _modules_formatPhotoFilter__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(_modules_formatPhotoFilter__WEBPACK_IMPORTED_MODULE_2__);
-/* harmony import */ var _modules_sortPhotos__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./modules/sortPhotos */ "./public/src/modules/sortPhotos.js");
-/* harmony import */ var _modules_sortPhotos__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(_modules_sortPhotos__WEBPACK_IMPORTED_MODULE_3__);
-/* harmony import */ var _modules_contactModal__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./modules/contactModal */ "./public/src/modules/contactModal.js");
-/* harmony import */ var _modules_contactModal__WEBPACK_IMPORTED_MODULE_4___default = /*#__PURE__*/__webpack_require__.n(_modules_contactModal__WEBPACK_IMPORTED_MODULE_4__);
-/* harmony import */ var _modules_photoNavigation__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./modules/photoNavigation */ "./public/src/modules/photoNavigation.js");
-/* harmony import */ var _modules_photoNavigation__WEBPACK_IMPORTED_MODULE_5___default = /*#__PURE__*/__webpack_require__.n(_modules_photoNavigation__WEBPACK_IMPORTED_MODULE_5__);
+/* harmony import */ var _modules_lightbox__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./modules/lightbox */ "./public/src/modules/lightbox.js");
+/* harmony import */ var _modules_lightbox__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_modules_lightbox__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _modules_loadMorePhotos__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./modules/loadMorePhotos */ "./public/src/modules/loadMorePhotos.js");
+/* harmony import */ var _modules_loadMorePhotos__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_modules_loadMorePhotos__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var _modules_categoryPhotoFilter__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./modules/categoryPhotoFilter */ "./public/src/modules/categoryPhotoFilter.js");
+/* harmony import */ var _modules_categoryPhotoFilter__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(_modules_categoryPhotoFilter__WEBPACK_IMPORTED_MODULE_2__);
+/* harmony import */ var _modules_formatPhotoFilter__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./modules/formatPhotoFilter */ "./public/src/modules/formatPhotoFilter.js");
+/* harmony import */ var _modules_formatPhotoFilter__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(_modules_formatPhotoFilter__WEBPACK_IMPORTED_MODULE_3__);
+/* harmony import */ var _modules_sortPhotos__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./modules/sortPhotos */ "./public/src/modules/sortPhotos.js");
+/* harmony import */ var _modules_sortPhotos__WEBPACK_IMPORTED_MODULE_4___default = /*#__PURE__*/__webpack_require__.n(_modules_sortPhotos__WEBPACK_IMPORTED_MODULE_4__);
+/* harmony import */ var _modules_contactModal__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./modules/contactModal */ "./public/src/modules/contactModal.js");
+/* harmony import */ var _modules_contactModal__WEBPACK_IMPORTED_MODULE_5___default = /*#__PURE__*/__webpack_require__.n(_modules_contactModal__WEBPACK_IMPORTED_MODULE_5__);
+/* harmony import */ var _modules_photoNavigation__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./modules/photoNavigation */ "./public/src/modules/photoNavigation.js");
+/* harmony import */ var _modules_photoNavigation__WEBPACK_IMPORTED_MODULE_6___default = /*#__PURE__*/__webpack_require__.n(_modules_photoNavigation__WEBPACK_IMPORTED_MODULE_6__);
+
 
 
 

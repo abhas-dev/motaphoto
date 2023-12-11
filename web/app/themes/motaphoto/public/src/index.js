@@ -1,3 +1,4 @@
+import './modules/lightbox';
 import './modules/loadMorePhotos';
 import './modules/categoryPhotoFilter';
 import './modules/formatPhotoFilter';

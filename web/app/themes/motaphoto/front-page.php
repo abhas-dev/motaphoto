@@ -10,7 +10,11 @@ $photoFormats = get_terms([
     'taxonomy' => 'photo_format',
     'hide_empty' => false,
 ]);
+
+//$randPhoto = new WP_Query( ['post_type' => 'photo','orderby' => 'rand', 'posts_per_page' => '1']);
+$randPhoto = get_posts( ['post_type' => 'photo','orderby' => 'rand', 'posts_per_page' => '1']);
 ?>
+<?php //= get_field('photo_image', $randPhoto[0])['url'] ?>
 	<section id="hero" class="hero" style="background-image: url(<?= get_theme_file_uri('public/images/nathalie-10.jpeg') ?>)">
 		<h1>Photographe Event</h1>
 	</section>
