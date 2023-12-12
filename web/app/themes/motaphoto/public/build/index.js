@@ -142,6 +142,49 @@ if (formatPhotoFilter) {
 
 /***/ }),
 
+/***/ "./public/src/modules/lightboxFancybox.js":
+/*!************************************************!*\
+  !*** ./public/src/modules/lightboxFancybox.js ***!
+  \************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _fancyapps_ui__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @fancyapps/ui */ "./node_modules/@fancyapps/ui/dist/index.esm.js");
+
+_fancyapps_ui__WEBPACK_IMPORTED_MODULE_0__.Fancybox.bind('[data-fancybox="gallery"]', {
+  backdropClick: false,
+  contentClick: false,
+  Thumbs: false,
+  caption: (fancybox, slide) => {
+    var _slide$triggerEl$data, _slide$triggerEl$data2;
+    return `<div class="lightbox__caption">
+                        <p>${(_slide$triggerEl$data = slide.triggerEl?.dataset.fancyboxReference) !== null && _slide$triggerEl$data !== void 0 ? _slide$triggerEl$data : ""}</p>
+                        <p>${(_slide$triggerEl$data2 = slide.triggerEl?.dataset.fancyboxCategory) !== null && _slide$triggerEl$data2 !== void 0 ? _slide$triggerEl$data2 : ""}</p>
+                     </div>`;
+  },
+  Toolbar: {
+    display: {
+      right: ["close"]
+    }
+  },
+  // Make the caption the same width as the image
+  Images: {
+    Panzoom: {
+      on: {
+        refresh: panzoom => {
+          const caption = panzoom.content.parentElement?.nextElementSibling;
+          if (caption) {
+            caption.style.width = `${panzoom.contentRect.width}px`;
+          }
+        }
+      }
+    }
+  }
+});
+
+/***/ }),
+
 /***/ "./public/src/modules/photoNavigation.js":
 /*!***********************************************!*\
   !*** ./public/src/modules/photoNavigation.js ***!
@@ -283,7 +326,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _modules_photoNavigation__WEBPACK_IMPORTED_MODULE_4___default = /*#__PURE__*/__webpack_require__.n(_modules_photoNavigation__WEBPACK_IMPORTED_MODULE_4__);
 /* harmony import */ var _modules_LoadMorePhotos__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./modules/LoadMorePhotos */ "./public/src/modules/LoadMorePhotos.js");
 /* harmony import */ var _modules_LoadMorePhotos__WEBPACK_IMPORTED_MODULE_5___default = /*#__PURE__*/__webpack_require__.n(_modules_LoadMorePhotos__WEBPACK_IMPORTED_MODULE_5__);
-/* harmony import */ var _fancyapps_ui__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! @fancyapps/ui */ "./node_modules/@fancyapps/ui/dist/index.esm.js");
+/* harmony import */ var _modules_lightboxFancybox__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./modules/lightboxFancybox */ "./public/src/modules/lightboxFancybox.js");
 // import './modules/Lightbox';
 
 
@@ -291,38 +334,7 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
-// import './modules/lightGallery';
 
-_fancyapps_ui__WEBPACK_IMPORTED_MODULE_6__.Fancybox.bind('[data-fancybox="gallery"]', {
-  backdropClick: false,
-  contentClick: false,
-  Thumbs: false,
-  caption: (fancybox, slide) => {
-    var _slide$triggerEl$data, _slide$triggerEl$data2;
-    return `<div class="lightbox__caption">
-                        <p>${(_slide$triggerEl$data = slide.triggerEl?.dataset.fancyboxReference) !== null && _slide$triggerEl$data !== void 0 ? _slide$triggerEl$data : ""}</p>
-                        <p>${(_slide$triggerEl$data2 = slide.triggerEl?.dataset.fancyboxCategory) !== null && _slide$triggerEl$data2 !== void 0 ? _slide$triggerEl$data2 : ""}</p>
-                     </div>`;
-  },
-  Toolbar: {
-    display: {
-      right: ["close"]
-    }
-  },
-  // Make the caption the same width as the image
-  Images: {
-    Panzoom: {
-      on: {
-        refresh: panzoom => {
-          const caption = panzoom.content.parentElement?.nextElementSibling;
-          if (caption) {
-            caption.style.width = `${panzoom.contentRect.width}px`;
-          }
-        }
-      }
-    }
-  }
-});
 })();
 
 /******/ })()
