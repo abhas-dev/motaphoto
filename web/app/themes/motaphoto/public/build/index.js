@@ -185,6 +185,24 @@ _fancyapps_ui__WEBPACK_IMPORTED_MODULE_0__.Fancybox.bind('[data-fancybox="galler
 
 /***/ }),
 
+/***/ "./public/src/modules/menuResponsive.js":
+/*!**********************************************!*\
+  !*** ./public/src/modules/menuResponsive.js ***!
+  \**********************************************/
+/***/ (() => {
+
+const burger = document.querySelector('.header__burger');
+const closeBtn = document.querySelector('.header__navigation__close');
+const navigationMenu = document.querySelector('.header__navigation');
+burger.addEventListener('click', e => {
+  navigationMenu.classList.add('open');
+});
+closeBtn.addEventListener('click', e => {
+  navigationMenu.classList.remove('open');
+});
+
+/***/ }),
+
 /***/ "./public/src/modules/photoNavigation.js":
 /*!***********************************************!*\
   !*** ./public/src/modules/photoNavigation.js ***!
@@ -327,7 +345,10 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _modules_LoadMorePhotos__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./modules/LoadMorePhotos */ "./public/src/modules/LoadMorePhotos.js");
 /* harmony import */ var _modules_LoadMorePhotos__WEBPACK_IMPORTED_MODULE_5___default = /*#__PURE__*/__webpack_require__.n(_modules_LoadMorePhotos__WEBPACK_IMPORTED_MODULE_5__);
 /* harmony import */ var _modules_lightboxFancybox__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./modules/lightboxFancybox */ "./public/src/modules/lightboxFancybox.js");
+/* harmony import */ var _modules_menuResponsive__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./modules/menuResponsive */ "./public/src/modules/menuResponsive.js");
+/* harmony import */ var _modules_menuResponsive__WEBPACK_IMPORTED_MODULE_7___default = /*#__PURE__*/__webpack_require__.n(_modules_menuResponsive__WEBPACK_IMPORTED_MODULE_7__);
 // import './modules/Lightbox';
+
 
 
 

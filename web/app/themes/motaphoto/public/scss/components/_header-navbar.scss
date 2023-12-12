@@ -1,24 +1,73 @@
 header {
   padding: 40px 0;
   max-height: 80px;
+  display: flex;
+  align-items: center;
 
   .container {
     display: flex;
     justify-content: space-between;
     align-items: center;
+
+    @media screen and (max-width: 768px) {
+      flex-direction: row;
+      align-items: center;
+      justify-content: space-between;
+      margin: 0 2.5rem;
+    }
+  }
+
+  .header__nolose {
+    @media screen and (max-width: 768px) {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      width: 100%;
+    }
   }
 
   .header__logo {
   }
 
   .header__navigation {
+
+    @media screen and (max-width: 768px) {
+      position: fixed;
+      top: 0;
+      right: 0;
+      width: 300px;
+      height: 100vh;
+      background: white;
+      align-items: center;
+      justify-content: center;
+      z-index: 16;
+      border-left: 3px solid black;
+      transform: translateX(100%);
+      display: none;
+    }
+
+    &.open {
+      display: flex;
+      animation: translateMenu 0.3s ease-in-out forwards;
+    }
+
     ul {
       display: flex;
       justify-content: space-between;
       align-items: center;
 
+      @media screen and (max-width: 768px) {
+        flex-direction: column;
+        align-items: center;
+      }
+
       li {
         margin-left: 2rem;
+
+        @media screen and (max-width: 768px) {
+          margin-left: 0;
+          margin-bottom: 1.25rem;
+        }
 
         a {
           font-family: $font-primary;
@@ -26,19 +75,51 @@ header {
           font-weight: 400;
           text-decoration: none;
           text-transform: uppercase;
-          color: $black;
+          color: black;
           line-height: 1;
           transition: all 0.3s;
+
+          @media screen and (max-width: 768px) {
+            font-size: 1.5rem;
+          }
 
           &:hover {
             font-weight: 700;
           }
 
           &:visited {
-            color: $black;
+            color: black;
           }
         }
       }
+    }
+
+    .header__navigation__close {
+      display: none;
+      cursor: pointer;
+
+      @media screen and (max-width: 768px) {
+        display: block;
+      }
+
+      svg {
+        position: absolute;
+        top: 1rem;
+        right: 1rem;
+        width: 35px;
+        height: 35px;
+      }
+    }
+  }
+
+  .header__burger {
+    display: none;
+
+    @media screen and (max-width: 768px) {
+      display: block;
+      width: 35px;
+      height: 35px;
+      cursor: pointer;
     }
   }
 

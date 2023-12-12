@@ -6,4 +6,5 @@ import './modules/contactModal';
 import './modules/photoNavigation';
 import './modules/LoadMorePhotos';
 import './modules/lightboxFancybox';
+import './modules/menuResponsive';
 

@@ -94,6 +94,14 @@ a {
     opacity: 1;
   }
 }
+@keyframes translateMenu {
+  0% {
+    transform: translateX(100%);
+  }
+  100% {
+    transform: initial;
+  }
+}
 .container {
   width: 100%;
   max-width: 1150px;
@@ -119,6 +127,12 @@ h1 {
   line-height: normal;
   text-transform: uppercase;
   color: #000000;
+}
+@media screen and (max-width: 640px) {
+  h1 {
+    font-size: 3rem;
+    line-height: normal;
+  }
 }
 
 h2 {
@@ -237,19 +251,69 @@ img {
 header {
   padding: 40px 0;
   max-height: 80px;
+  display: flex;
+  align-items: center;
 }
 header .container {
   display: flex;
   justify-content: space-between;
   align-items: center;
 }
+@media screen and (max-width: 768px) {
+  header .container {
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    margin: 0 2.5rem;
+  }
+}
+@media screen and (max-width: 768px) {
+  header .header__nolose {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+  }
+}
+@media screen and (max-width: 768px) {
+  header .header__navigation {
+    position: fixed;
+    top: 0;
+    right: 0;
+    width: 300px;
+    height: 100vh;
+    background: white;
+    align-items: center;
+    justify-content: center;
+    z-index: 16;
+    border-left: 3px solid black;
+    transform: translateX(100%);
+    display: none;
+  }
+}
+header .header__navigation.open {
+  display: flex;
+  animation: translateMenu 0.3s ease-in-out forwards;
+}
 header .header__navigation ul {
   display: flex;
   justify-content: space-between;
   align-items: center;
 }
+@media screen and (max-width: 768px) {
+  header .header__navigation ul {
+    flex-direction: column;
+    align-items: center;
+  }
+}
 header .header__navigation ul li {
   margin-left: 2rem;
+}
+@media screen and (max-width: 768px) {
+  header .header__navigation ul li {
+    margin-left: 0;
+    margin-bottom: 1.25rem;
+  }
 }
 header .header__navigation ul li a {
   font-family: "Space Mono", sans-serif;
@@ -257,15 +321,47 @@ header .header__navigation ul li a {
   font-weight: 400;
   text-decoration: none;
   text-transform: uppercase;
-  color: #000000;
+  color: black;
   line-height: 1;
   transition: all 0.3s;
+}
+@media screen and (max-width: 768px) {
+  header .header__navigation ul li a {
+    font-size: 1.5rem;
+  }
 }
 header .header__navigation ul li a:hover {
   font-weight: 700;
 }
 header .header__navigation ul li a:visited {
-  color: #000000;
+  color: black;
+}
+header .header__navigation .header__navigation__close {
+  display: none;
+  cursor: pointer;
+}
+@media screen and (max-width: 768px) {
+  header .header__navigation .header__navigation__close {
+    display: block;
+  }
+}
+header .header__navigation .header__navigation__close svg {
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+  width: 35px;
+  height: 35px;
+}
+header .header__burger {
+  display: none;
+}
+@media screen and (max-width: 768px) {
+  header .header__burger {
+    display: block;
+    width: 35px;
+    height: 35px;
+    cursor: pointer;
+  }
 }
 
 #contact-modal {
