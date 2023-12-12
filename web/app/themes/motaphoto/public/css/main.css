@@ -568,4 +568,13 @@ header .header__navigation ul li a:visited {
   margin: 4rem 0 2.5rem;
 }
 
+.singe__home-link {
+  display: flex;
+  justify-content: center;
+}
+.singe__home-link a {
+  display: block;
+  margin: 40px auto;
+}
+
 /*# sourceMappingURL=main.css.map */

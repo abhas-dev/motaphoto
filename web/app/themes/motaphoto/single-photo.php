@@ -151,8 +151,13 @@ if ($photo): ?>
 
         get_template_part( 'template-parts/grid-photo-card', null, [ 'photos' => $photos]);
         ?>
-        <button type="button" class="btn btn-grey btn-load-more">Toutes les photos</button>
+
+<!--        <button type="button" class="btn btn-grey btn-load-more">Toutes les photos</button>-->
     </section>
+
+    <div class="singe__home-link">
+        <a class="btn btn-grey" href="<?= home_url(); ?>">Toutes les photos</a>
+    </div>
 </div>
 <?php endif; ?>
 
