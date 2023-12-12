@@ -18,5 +18,8 @@
   "license": "ISC",
   "devDependencies": {
     "@wordpress/scripts": "^26.17.0"
+  },
+  "dependencies": {
+    "@fancyapps/ui": "^5.0.29"
   }
 }

@@ -78,6 +78,7 @@ class PhotoCustomRoute extends WP_REST_Controller {
 					'title' => get_the_title(),
 					'category' => !empty(get_the_terms(get_post(), 'photo_category')) ? get_the_terms(get_post(), 'photo_category')[0]->name : '',
 					'format' => get_the_terms(get_post(), 'photo_format')[0]->name,
+					'ref' => get_field('photo_reference')
 				]);
 			}
 
@@ -125,6 +126,7 @@ class PhotoCustomRoute extends WP_REST_Controller {
 					'title' => get_the_title(),
 					'category' => get_the_terms(get_post(), 'photo_category')[0]->name,
 					'format' => get_the_terms(get_post(), 'photo_format')[0]->name,
+					'ref' => get_field('photo_reference')
 				]);
 			}
 

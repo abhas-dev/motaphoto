@@ -13,9 +13,12 @@ if ( ! defined( '_S_VERSION' ) ) {
 
 function motaphoto_enqueue_styles():void {
 	// Stylesheets
-	wp_enqueue_style('motaphoto-style', get_theme_file_uri('/public/css/main.css'));
+//	wp_enqueue_style('light-gallery', get_theme_file_uri('./node_modules/lightgallery/css/lightgallery-bundle.min.css'));
+	wp_enqueue_style('light-gallery', get_theme_file_uri('./node_modules/@fancyapps/ui/dist/fancybox/fancybox.css'));
+	wp_enqueue_style('motaphoto-style', get_theme_file_uri('./public/css/main.css'));
 	// Scripts
 	wp_enqueue_script('motaphoto-scripts', get_theme_file_uri('/public/build/index.js'), NULL, '1.0', $args = ['strategy' => 'defer', 'in_footer' => true]);
+
 	wp_localize_script('motaphoto-scripts', 'motaphotoData', [
 		'root_url' => home_url(),
 		'nonce' => wp_create_nonce('wp_rest'),

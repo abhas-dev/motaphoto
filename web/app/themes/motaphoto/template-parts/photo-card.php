@@ -4,12 +4,20 @@ $imageAlt = $args['imageAlt'];
 $title = $args['title'];
 $category = $args['category'];
 $format = $args['format'];
+$ref = $args['ref'];
 ?>
 <div class='card-photo'>
     <img src="<?= esc_url($imageUrl); ?>" alt="<?= esc_attr($imageAlt); ?>">
     <div class='overlay-photo'>
         <div class="card-photo__description">
-            <a class="icon-fullscreen" href="javascript:void(0)">
+            <a
+                    class="icon-fullscreen"
+                    href="javascript:void(0)"
+                    data-fancybox="gallery"
+                    data-src="<?= esc_url($imageUrl); ?>"
+                    data-fancybox-reference="<?= $ref ?>"
+                    data-fancybox-category="<?= $category ?>"
+            >
                 <svg xmlns="http://www.w3.org/2000/svg" width="34" height="34" viewBox="0 0 34 34" fill="none">
                     <circle cx="17" cy="17" r="17" fill="black"/>
                     <line x1="15" y1="10.5" x2="10" y2="10.5" stroke="white"/>

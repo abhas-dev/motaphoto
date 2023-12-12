@@ -1,5 +1,5 @@
 <?php
-echo "<div class='two-columns-grid photo-grid'>";
+echo "<div id='photo-grid' class='two-columns-grid photo-grid'>";
 $photos = $args['photos'];
 if ($photos->have_posts()){
     while ($photos->have_posts()){
@@ -12,6 +12,7 @@ if ($photos->have_posts()){
             'title' => get_the_title(),
             'category' => get_the_terms(get_post(), 'photo_category')[0]->name,
             'format' => get_the_terms(get_post(), 'photo_format')[0]->name,
+	        'ref' => get_field('photo_reference')
         ]);
     }
 	wp_reset_postdata();
