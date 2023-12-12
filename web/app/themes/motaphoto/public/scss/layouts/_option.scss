@@ -6,16 +6,31 @@
   margin-top: 2rem;
   margin-bottom: 1rem;
 
+  @media screen and (max-width: 640px) {
+    flex-direction: column;
+    padding: 0 20px;
+  }
+
   .filters {
     width: 50%;
     display: flex;
     justify-content: space-between;
+
+    @media screen and (max-width: 640px) {
+      width: 100%;
+    }
   }
 
   .sort {
     width: 50%;
     display: flex;
     justify-content: flex-end;
+
+    @media screen and (max-width: 640px) {
+      display: block;
+      width: 100%;
+      margin: 10px auto;
+    }
   }
 
   select {
@@ -32,6 +47,10 @@
     line-height: 1;
     text-transform: uppercase;
     letter-spacing: 0.0225rem;
+    
+    @media screen and (max-width: 900px) {
+      padding: 0.5rem 0;
+    }
   }
 
   .filters select {

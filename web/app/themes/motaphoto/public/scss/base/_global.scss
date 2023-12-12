@@ -4,6 +4,14 @@
   margin: 0 auto;
   padding: 0 1rem;
   overflow: hidden;
+
+  @media screen and (max-width: 768px) {
+    max-width: none;
+    width: 100%;
+    flex-direction: column;
+    padding: 0;
+    margin: 0;
+  }
 }
 
 h1 {
@@ -24,6 +32,11 @@ h2 {
   line-height: 58px;
   text-transform: uppercase;
   color: $black;
+
+  @media screen and (max-width: 768px) {
+    font-size: 2.87rem;
+    line-height: 48px;
+  }
 }
 
 h3 {
