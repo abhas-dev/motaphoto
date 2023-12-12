@@ -48,6 +48,13 @@ function add_class_to_menu_link( $atts, $item, $args ) {
 	return $atts;
 }
 
+function add_text_to_footer_menu ($items, $args) {
+	if ($args->theme_location == 'footerMenuLocation') {
+		$items .= '<li><span>Tous droits réservés</span></li>';
+	}
+	return $items;
+}
+
 // Add actions
 add_action('after_setup_theme', 'register_menus');
 add_action('after_setup_theme', 'motaphoto_features');
@@ -58,3 +65,4 @@ add_action('init', 'photo_post_types');
 
 // Add filters
 add_filter( 'nav_menu_link_attributes', 'add_class_to_menu_link', 10, 3 );
+add_filter('wp_nav_menu_items', 'add_text_to_footer_menu', 10, 2);

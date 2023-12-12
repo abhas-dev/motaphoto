@@ -4,11 +4,12 @@
 
 <footer id="footer">
 	<div class="container">
-		<ul>
-			<li><a href="#">Mentions légales</a></li>
-			<li><a href="#">Vie privée</a></li>
-			<li><a href="#">Tous droits réservés</a></li>
-		</ul>
+		<?php
+		wp_nav_menu([
+			'theme_location' => 'footerMenuLocation',
+			'container' => 'ul',
+		]);
+		?>
 	</div>
 </footer>
 

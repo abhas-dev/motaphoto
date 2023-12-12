@@ -440,6 +440,14 @@ header .header__burger {
   margin-top: 1rem;
 }
 
+.group-input {
+  margin-bottom: 1rem;
+}
+
+p > .wpcf7-form-control {
+  width: 100%;
+}
+
 .lightbox__caption {
   display: flex;
   justify-content: space-between;
@@ -544,7 +552,7 @@ header .header__burger {
     margin-bottom: 1rem;
   }
 }
-#footer a {
+#footer a, #footer li > span {
   color: #000000;
   font-family: "Space Mono", sans-serif;
   font-size: 1rem;
@@ -555,7 +563,7 @@ header .header__burger {
   transition: color 0.2s ease-in-out;
 }
 @media screen and (max-width: 768px) {
-  #footer a {
+  #footer a, #footer li > span {
     font-size: 1.3rem;
   }
 }
